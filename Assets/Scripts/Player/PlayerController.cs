@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : PlayerControls
+public class PlayerController : BaseController
 {
     #region Variables
     [Header("Player Movement")]
@@ -10,11 +10,14 @@ public class PlayerController : PlayerControls
     [SerializeField] private float rotationSpeed = 4.0f;
     [SerializeField] private float sprintSpeed = 6.0f;
 
-    private float currentSpeed;
-
     [Header("Player Jump")]
     [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float gravityValue = -9.81f;
+
+    [Header("Non-Serialized Variables")]
+    private float currentSpeed;
+    protected Vector3 playerVelocity;
+    protected bool groundedPlayer;
     #endregion
 
     #region Overrided Methods

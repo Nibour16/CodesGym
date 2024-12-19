@@ -5,12 +5,9 @@ using UnityEditorInternal;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public abstract class PlayerControls : MonoBehaviour
+public abstract class BaseController : MonoBehaviour
 {
     protected CharacterController controller;
-    protected Vector3 playerVelocity;
-    protected bool groundedPlayer;
-
     protected InputManager inputManager;
 
     public abstract void Initialization();
@@ -20,7 +17,6 @@ public abstract class PlayerControls : MonoBehaviour
     {
         inputManager = InputManager.Instance;
         controller = GetComponent<CharacterController>();
-
         Initialization();
     }
 
