@@ -13,16 +13,7 @@ public abstract class PlayerControls : MonoBehaviour
 
     protected InputManager inputManager;
 
-    [Header("Player Movement")]
-    [SerializeField] protected float playerSpeed = 2.0f;
-    [SerializeField] protected float rotationSpeed = 4.0f;
-
-    [Header("Player Jump")]
-    [SerializeField] protected float jumpHeight = 1.0f;
-    [SerializeField] protected float gravityValue = -9.81f;
-
-    public abstract void PlayerMove();
-    public abstract void PlayerJump();
+    public abstract void ControllerAct();
 
     private void Start()
     {
@@ -32,7 +23,6 @@ public abstract class PlayerControls : MonoBehaviour
 
     private void Update()
     {
-        PlayerMove();
-        PlayerJump();
+        ControllerAct();
     }
 }

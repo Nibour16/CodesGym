@@ -4,10 +4,25 @@ using UnityEngine;
 
 public class PlayerController : PlayerControls
 {
-    public override void PlayerMove()
+    [Header("Player Movement")]
+    [SerializeField] private float playerSpeed = 2.0f;
+    [SerializeField] private float rotationSpeed = 4.0f;
+
+    [Header("Player Jump")]
+    [SerializeField] private float jumpHeight = 1.0f;
+    [SerializeField] private float gravityValue = -9.81f;
+
+    public override void ControllerAct()
+    {
+        Movement();
+        Jump();
+    }
+
+    private void Movement()
     {
         Vector2 movement = inputManager.playerInputs.Player.Movement.ReadValue<Vector2>();
         Vector3 move = new Vector3(movement.x, 0, movement.y);
+
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         if (move != Vector3.zero)
@@ -23,7 +38,7 @@ public class PlayerController : PlayerControls
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    public override void PlayerJump()
+    private void Jump()
     {
         groundedPlayer = controller.isGrounded;
 
@@ -35,6 +50,4 @@ public class PlayerController : PlayerControls
 
         playerVelocity.y += gravityValue * Time.deltaTime;
     }
-
-
 }
