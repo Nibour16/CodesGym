@@ -13,12 +13,15 @@ public abstract class PlayerControls : MonoBehaviour
 
     protected InputManager inputManager;
 
+    public abstract void Initialization();
     public abstract void ControllerAct();
 
     private void Start()
     {
         inputManager = InputManager.Instance;
         controller = GetComponent<CharacterController>();
+
+        Initialization();
     }
 
     private void Update()

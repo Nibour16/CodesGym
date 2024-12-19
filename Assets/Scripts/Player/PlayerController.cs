@@ -5,12 +5,23 @@ using UnityEngine;
 public class PlayerController : PlayerControls
 {
     [Header("Player Movement")]
-    [SerializeField] private float playerSpeed = 2.0f;
+    [SerializeField] private float walkSpeed = 2.0f;
     [SerializeField] private float rotationSpeed = 4.0f;
+    [SerializeField] private float sprintSpeed = 6.0f;
+
+    private float currentSpeed;
 
     [Header("Player Jump")]
     [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float gravityValue = -9.81f;
+
+    public override void Initialization()
+    {
+        currentSpeed = walkSpeed;
+
+        inputManager.playerInputs.Player.Sprint.performed += x => isSprint();
+        inputManager.playerInputs.Player.Sprint.canceled += x => isWalk();
+    }
 
     public override void ControllerAct()
     {
@@ -23,7 +34,7 @@ public class PlayerController : PlayerControls
         Vector2 movement = inputManager.playerInputs.Player.Movement.ReadValue<Vector2>();
         Vector3 move = new Vector3(movement.x, 0, movement.y);
 
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        controller.Move(move * Time.deltaTime * currentSpeed);
 
         if (move != Vector3.zero)
             gameObject.transform.forward = move;
@@ -49,5 +60,15 @@ public class PlayerController : PlayerControls
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
 
         playerVelocity.y += gravityValue * Time.deltaTime;
+    }
+
+    private void isSprint()
+    {
+        currentSpeed = sprintSpeed;
+    }
+
+    private void isWalk()
+    {
+        currentSpeed = walkSpeed;
     }
 }
