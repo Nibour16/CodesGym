@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : PlayerControls
 {
+    #region Variables
     [Header("Player Movement")]
     [SerializeField] private float walkSpeed = 2.0f;
     [SerializeField] private float rotationSpeed = 4.0f;
@@ -14,7 +15,9 @@ public class PlayerController : PlayerControls
     [Header("Player Jump")]
     [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float gravityValue = -9.81f;
+    #endregion
 
+    #region Overrided Methods
     public override void Initialization()
     {
         currentSpeed = walkSpeed;
@@ -28,7 +31,9 @@ public class PlayerController : PlayerControls
         Movement();
         Jump();
     }
+    #endregion
 
+    #region Player Action
     private void Movement()
     {
         Vector2 movement = inputManager.playerInputs.Player.Movement.ReadValue<Vector2>();
@@ -61,7 +66,9 @@ public class PlayerController : PlayerControls
 
         playerVelocity.y += gravityValue * Time.deltaTime;
     }
+    #endregion
 
+    #region state Check
     private void isSprint()
     {
         currentSpeed = sprintSpeed;
@@ -71,4 +78,5 @@ public class PlayerController : PlayerControls
     {
         currentSpeed = walkSpeed;
     }
+    #endregion
 }
