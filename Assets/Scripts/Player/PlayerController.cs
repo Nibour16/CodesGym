@@ -25,8 +25,8 @@ public class PlayerController : BaseController
     {
         currentSpeed = walkSpeed;
 
-        inputManager.playerInputs.Player.Sprint.performed += x => isSprint();
-        inputManager.playerInputs.Player.Sprint.canceled += x => isWalk();
+        inputManager.GetPlayerSprint().performed += x => isSprint();
+        inputManager.GetPlayerSprint().canceled += x => isWalk();
     }
 
     public override void ControllerAct()
@@ -39,7 +39,7 @@ public class PlayerController : BaseController
     #region Player Action
     private void Movement()
     {
-        Vector2 movement = inputManager.playerInputs.Player.Movement.ReadValue<Vector2>();
+        Vector2 movement = inputManager.GetPlayerMovement();
         Vector3 move = new Vector3(movement.x, 0, movement.y);
 
         controller.Move(move * Time.deltaTime * currentSpeed);
@@ -64,7 +64,7 @@ public class PlayerController : BaseController
         if (groundedPlayer && playerVelocity.y < 0)
             playerVelocity.y = 0f;
 
-        if (inputManager.playerInputs.Player.Jump.triggered && groundedPlayer)
+        if (inputManager.GetPlayerJump() && groundedPlayer)
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
 
         playerVelocity.y += gravityValue * Time.deltaTime;

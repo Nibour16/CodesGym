@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
 
     private static InputManager _instance;
 
+    #region Instance Setup
     public static InputManager Instance
     {
         get
@@ -41,4 +42,27 @@ public class InputManager : MonoBehaviour
     {
         playerInputs.Disable();
     }
+    #endregion
+
+    #region Player Actions
+    public Vector2 GetPlayerMovement()
+    {
+        return playerInputs.Player.Movement.ReadValue<Vector2>();
+    }
+
+    public bool GetPlayerJump()
+    {
+        return playerInputs.Player.Jump.triggered;
+    }
+
+    public InputAction GetPlayerSprint()
+    {
+        return playerInputs.Player.Sprint;
+    }
+
+    public bool GetInteractButton()
+    {
+        return playerInputs.Player.Interact.triggered;
+    }
+    #endregion
 }
