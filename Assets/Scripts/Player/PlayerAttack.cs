@@ -13,7 +13,6 @@ public class PlayerAttack : BaseInteraction
         {
             IDamageable iDamageable = ActionTarget.GetComponent<IDamageable>();
             iDamageable.Hit(attackDamage);
-            isInteraction = true;
         }
     }
 }
