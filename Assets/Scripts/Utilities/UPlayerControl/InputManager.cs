@@ -64,5 +64,15 @@ public class InputManager : MonoBehaviour
     {
         return playerInputs.Player.Interact.triggered;
     }
+
+    public bool GetAttackButton()
+    {
+        return playerInputs.Player.Attack.triggered;
+    }
+
+    public bool GetItemUseButton()
+    {
+        return playerInputs.Player.ItemUse.triggered;
+    }
     #endregion
 }

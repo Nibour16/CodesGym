@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInteraction : BaseInteraction
 {
-    public override void ExecuteAction(Transform ActionTarget)
+    public override void ExecuteInteraction(Transform ActionTarget)
     {
-        InputManager inputManager = InputManager.Instance;
-
         if (inputManager.GetInteractButton())
         {
             IInteractable iInteractable = ActionTarget.GetComponent<IInteractable>();
             iInteractable.Interact();
+            isActOnce = true;
         }
     }
 }
