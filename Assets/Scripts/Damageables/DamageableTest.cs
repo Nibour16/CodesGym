@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DamageableTest : BaseDamageable, IDamageable
 {
-    public void Hit(float damage)
+    public void Hit(float damage, float critical, float damMin)
     {
-        GetDamage(damage);
+        GetDamage(damage, critical, damMin);
     }
 }

@@ -49,15 +49,14 @@ public class InputManager : MonoBehaviour
     {
         return playerInputs.Player.Movement.ReadValue<Vector2>();
     }
+    public InputAction GetPlayerSprint()
+    {
+        return playerInputs.Player.Sprint;
+    }
 
     public bool GetPlayerJump()
     {
         return playerInputs.Player.Jump.triggered;
-    }
-
-    public InputAction GetPlayerSprint()
-    {
-        return playerInputs.Player.Sprint;
     }
 
     public bool GetInteractButton()

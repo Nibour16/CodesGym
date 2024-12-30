@@ -9,7 +9,7 @@ public abstract class BaseInteraction : MonoBehaviour
     [SerializeField] private Transform sourceInteraction;
 
     [Range(0, 360)]
-    [SerializeField] private float angle = 90;
+    [SerializeField] private float angleRange = 90;
 
     protected InputManager inputManager;
     protected bool isActOnce = false;
@@ -31,7 +31,7 @@ public abstract class BaseInteraction : MonoBehaviour
             var directionToTarget = (target.position - sourceInteraction.position).normalized;
 
             //check if the target is within the spectrum
-            if (Vector3.Angle(sourceInteraction.forward, directionToTarget) < angle / 2)
+            if (Vector3.Angle(sourceInteraction.forward, directionToTarget) < angleRange / 2)
             {
                 ExecuteInteraction(target);
                 if (isActOnce)
